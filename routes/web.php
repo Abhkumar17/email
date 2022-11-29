@@ -11,3 +11,5 @@ Route::get('/', function () {
 Route::get('mail-send', [SendMailController::class, 'index']);
 Route::get('showForm', [SendMailController::class, 'show']);
 Route::get('autocomplete', [SendMailController::class,'autocomplete'])->name('autocomplete');
+
+Route::post('/emailsend', [SendMailController::class,'emailsend'])->name('emailsend');

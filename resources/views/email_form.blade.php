@@ -79,34 +79,38 @@ body{
                     <h4>Send Email</h4>
                 </div>
                 <div class="card-body">
-                    <div class="col-sm-12 email-id-row">
-                        <span class="to-input text-white">To</span>
-                           <div class="all-mail">
-                               
-                           </div>
-                            <input type="email" name="email" class="enter-mail-id typeahead form-control" id="search" placeholder="Email" />
-                      </div><br><br><br><br>
-                      <div class="col-sm-12 email-id-row">
-                        <span class="to-input text-white">CC</span>
-                           <div class="all-mail_1">
-                               
-                           </div>
-                            <input type="email" name="email" class="enter-mail-id typeahead form-control" id="search_1" placeholder="Email" />
-                      </div>
-                      
-                      <div class="col-sm-12 email-id-row">
-                        <span class="to-input text-white">BCC</span>
-                           <div class="all-mail_2">
-                               
-                           </div>
-                            <input type="email" name="email" class="enter-mail-id typeahead form-control search_2" id="email" placeholder="Email" />
-                            
-                        </div>
-                            <div class="col-sm-12 email-id-row">
-                                <textarea type="text" name="subject" class="enter-mail-id typeahead form-control " id="subject" placeholder="Subject" ></textarea>    
+                    <form action="" id="sendEmail">
+                        @csrf
+                        <div class="col-sm-12 email-id-row">
+                            <span class="to-input text-white">To</span>
+                               <div class="all-mail">
+                                   
+                               </div>
+                                <input type="email" name="to" class="enter-mail-id typeahead form-control search" id="to" placeholder="Email" />
+                          </div><br><br><br><br>
+                          <div class="col-sm-12 email-id-row">
+                            <span class="to-input text-white">CC</span>
+                               <div class="all-mail_1">
+                                   
+                               </div>
+                                <input type="email" name="cc" class="enter-mail-id typeahead form-control search_1" id="c
+                                c" placeholder="Email" />
+                          </div>
+                          
+                          <div class="col-sm-12 email-id-row">
+                            <span class="to-input text-white">BCC</span>
+                               <div class="all-mail_2">
+                                   
+                               </div>
+                                <input type="email" name="bcc" class="enter-mail-id typeahead form-control search_2" id="bcc" placeholder="Email" />
+                                
                             </div>
-                        
-                      <button type="submit" class="btn btn-primary offset-6 mt-3">Send</button>
+                                <div class="col-sm-12 email-id-row">
+                                    <textarea type="text" name="subject" class="enter-mail-id typeahead form-control " id="subject" placeholder="Subject" ></textarea>    
+                                </div>
+                            
+                                <button type="submit" value="" class="btn btn-primary" id="btn-submit" >Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -116,7 +120,7 @@ body{
     let selectedEmails = [];
     var path = "{{ route('autocomplete') }}";
   
-    $( "#search" ).autocomplete({
+    $( ".search" ).autocomplete({
         source: function( request, response ) {
           $.ajax({
             url: path,
@@ -152,7 +156,7 @@ body{
         }
         console.log(selectedEmails)
   $(this).parent().remove();
-});
+    });
 </script>
 
 <script type="text/javascript">
@@ -202,7 +206,7 @@ body{
     let selectedEmails_1 = [];
     var path = "{{ route('autocomplete') }}";
   
-    $( "#search_1" ).autocomplete({
+    $( ".search_1" ).autocomplete({
         source: function( request, response ) {
           $.ajax({
             url: path,
@@ -240,12 +244,39 @@ body{
   $(this).parent().remove();
 });
 </script>
-<!-- <div class="col-sm-12 email-id-row">
-                <span class="to-input">To</span>
-                <div class="all-mail">
-         
-                </div>
-                <input type="text" name="email_to" class="enter-mail-id typeahead form-control comp_mail search" id="email_to" placeholder="Email" />
-</div> -->
-</body>
-</html>
+<script>
+    $("#sendEmail").submit(function(e){
+        e.preventDefault();
+        let to = $("#to").val();
+        let cc = $("#cc").val();
+        let bcc = $("#bcc").val();
+        let subject = $("#subject").val();
+        let _token = $("input[name=_token]").val();
+
+        $.ajax({
+          url:"{{route('emailsend')}}",
+          type:"POST",
+          data:{
+            to:to,
+            cc:cc,
+            bcc:bcc,
+            subject:subject,
+            _token:_token
+          },
+          success:function(response){
+            if (response) {
+                $('tbody').prepend(
+                    '<tr>'+
+                    '<td>'+response.to+'</td>'+
+                    '<td>'+response.cc+'</td>'+
+                    '<td>'+response.bcc+'</td>'+
+                    '<td>'+response.subject+'</td>'+
+                    '</tr>');                
+                $("#sendEmail")[0].reset();
+            }
+          }
+        });
+    });
+    </script>
+    </body>
+    </html>

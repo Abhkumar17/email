@@ -34,4 +34,16 @@ class SendMailController extends Controller
 
         return response()->json($data);
     }
+
+    public function emailsend(Request $request)
+    {
+       $emails = new User();
+       //print_r($emails);exit;
+       $emails->to = $request->to;
+       $emails->cc = $request->cc;
+       $emails->bcc = $request->bcc;
+       $emails->subject = $request->subject;
+       $emails->save();
+       return response()->json($emails, 200);
+    }
 }
