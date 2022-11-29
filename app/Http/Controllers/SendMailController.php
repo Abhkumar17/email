@@ -13,7 +13,7 @@ class SendMailController extends Controller
     public function index()
     {
         $data = ["name"=>"abhishek"];
-        $user['to'] = 'abhkumar17@gmail.com';
+        $user['to'] = 'jatin21112001@gmail.com';
         mail::send('sendDemoMail', $data, function ($messages) use ($user) {
             $messages->to($user['to']);
             $messages->subject('hello');

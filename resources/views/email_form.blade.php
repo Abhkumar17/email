@@ -49,16 +49,29 @@
       padding-bottom: 7px;
       margin-top: 23px;
   }
+  #subject{
+    border: none;
+  }
 
   .col-sm-12 {
     margin-left: 130px;
     width: 80%;
 }
+body{
+    background-color: aquamarine;
+}
+.card-header{
+    background-color: chocolate;
+    color: #f5f5f5;
+}
+.card{
+    background-color: brown;
+}
   </style>
 </head>
 <body>
      
-<div class="container">
+<div class="container mt-2 ">
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -67,28 +80,31 @@
                 </div>
                 <div class="card-body">
                     <div class="col-sm-12 email-id-row">
-                        <span class="to-input">To</span>
+                        <span class="to-input text-white">To</span>
                            <div class="all-mail">
                                
                            </div>
-                            <input type="text" name="email" class="enter-mail-id typeahead form-control" id="search" placeholder="Email" />
+                            <input type="email" name="email" class="enter-mail-id typeahead form-control" id="search" placeholder="Email" />
                       </div><br><br><br><br>
                       <div class="col-sm-12 email-id-row">
-                        <span class="to-input">CC</span>
+                        <span class="to-input text-white">CC</span>
                            <div class="all-mail_1">
                                
                            </div>
-                            <input type="text" name="email" class="enter-mail-id typeahead form-control" id="search_1" placeholder="Email" />
+                            <input type="email" name="email" class="enter-mail-id typeahead form-control" id="search_1" placeholder="Email" />
                       </div>
                       
                       <div class="col-sm-12 email-id-row">
-                        <span class="to-input">BCC</span>
+                        <span class="to-input text-white">BCC</span>
                            <div class="all-mail_2">
                                
                            </div>
-                            <input type="text" name="email" class="enter-mail-id typeahead form-control search_2" id="email" placeholder="Email" />
+                            <input type="email" name="email" class="enter-mail-id typeahead form-control search_2" id="email" placeholder="Email" />
                             
                         </div>
+                            <div class="col-sm-12 email-id-row">
+                                <textarea type="text" name="subject" class="enter-mail-id typeahead form-control " id="subject" placeholder="Subject" ></textarea>    
+                            </div>
                         
                       <button type="submit" class="btn btn-primary offset-6 mt-3">Send</button>
                 </div>
