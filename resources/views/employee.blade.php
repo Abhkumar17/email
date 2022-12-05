@@ -273,6 +273,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body add_epmployee">
+                    <form id = "frmadd">
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" id="name_input" class="form-control" required>
@@ -289,7 +290,9 @@
                         <label>Phone</label>
                         <input type="text" id="phone_input" class="form-control" required>
                     </div>
-                </div>
+
+                    </form>
+                 </div> 
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="submit" class="btn btn-success" value="Add" onclick="addEmployee()">
@@ -453,6 +456,7 @@
                 url: "{{ url('employee-add') }}",
                 success: function(response) {
                     $('#addEmployeeModal').modal('hide');
+                    $("#frmadd")[0].reset();
                     employeeList();
                     alert(response.message);
                 }
