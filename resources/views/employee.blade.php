@@ -456,7 +456,8 @@
                 url: "{{ url('employee-add') }}",
                 success: function(response) {
                     $('#addEmployeeModal').modal('hide');
-                    $("#frmadd")[0].reset();
+                    //$("#frmadd")[0].reset();
+                    document.getElementById("frmadd").reset();
                     employeeList();
                     alert(response.message);
                 }
