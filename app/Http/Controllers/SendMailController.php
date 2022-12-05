@@ -13,9 +13,11 @@ class SendMailController extends Controller
     public function index()
     {
         $data = ["name"=>"abhishek"];
-        $user['to'] = 'jatin21112001@gmail.com';
+        $user['to'] = 'abhi.bsi001@gmail.com';
+        $user['cc'] = 'sumitkmr612@gmail.com';
         mail::send('sendDemoMail', $data, function ($messages) use ($user) {
             $messages->to($user['to']);
+            $messages->to($user['cc']);
             $messages->subject('hello');
         });
       
@@ -38,7 +40,7 @@ class SendMailController extends Controller
     public function emailsend(Request $request)
     {
        $emails = new User();
-       //print_r($emails);exit;
+       print_r($emails);exit;
        $emails->to = $request->to;
        $emails->cc = $request->cc;
        $emails->bcc = $request->bcc;

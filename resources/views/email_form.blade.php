@@ -108,8 +108,8 @@ body{
                                 <div class="col-sm-12 email-id-row">
                                     <textarea type="text" name="subject" class="enter-mail-id typeahead form-control " id="subject" placeholder="Subject" ></textarea>    
                                 </div>
-                            
-                                <button type="submit" value="" class="btn btn-primary" id="btn-submit" >Submit</button>
+                                
+                                <button type="submit" value="" class="btn btn-primary offset-6 mt-2" id="btn-submit" >send</button>
                     </form>
                 </div>
             </div>
