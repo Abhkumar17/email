@@ -6,6 +6,12 @@ use App\Http\Controllers\LiveSearchController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\BlogController;
+
+
+
+Route::get('/blogs', [BlogController::class, 'getArticles']);
+
 Route::get('/', function () {
     return view('employee');
 });
